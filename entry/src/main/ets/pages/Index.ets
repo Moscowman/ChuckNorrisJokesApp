@@ -1,11 +1,14 @@
 import { getRandomJoke } from '../api/ChuckNorrisJokeApi'
 
+const refreshTimerInterval = 300000
+
 @Entry
 @Component
 struct Index {
   @State message: string = ""
   @State isLoading: boolean = false
   @State hasLoaded: boolean = false
+  timerId: number | null = null
 
   build() {
     Column() {
@@ -53,6 +56,29 @@ struct Index {
       })
       .finally(() => {
         this.isLoading = false
+        this.resetTimer()
       })
+  }
+
+  setTimer() {
+    this.clearTimer()
+    this.timerId = setTimeout(() => {
+      this.loadJoke()
+    }, refreshTimerInterval)
+  }
+
+  resetTimer() {
+    this.setTimer()
+  }
+
+  clearTimer() {
+    if (this.timerId !== null) {
+      clearTimeout(this.timerId)
+      this.timerId = null
+    }
+  }
+
+  onDestroy() {
+    this.clearTimer()
   }
 }
