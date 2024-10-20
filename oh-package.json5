@@ -1,9 +1,9 @@
 {
   "name": "chucknorrisjokesapp",
   "version": "1.0.0",
-  "description": "Please describe the basic information.",
+  "description": "This app displays jokes from api.chucknorris.io",
   "main": "",
-  "author": "",
+  "author": "Vadim Raspopin",
   "license": "",
   "dependencies": {
   },

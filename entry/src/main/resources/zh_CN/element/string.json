@@ -11,6 +11,14 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "updateJoke_button_label",
+      "value": "Update joke"
+    },
+    {
+      "name": "can_not_load_joke_message",
+      "value": "Can not load joke"
     }
   ]
 }
