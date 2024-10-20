@@ -3,20 +3,24 @@ import { getRandomJoke } from '../api/ChuckNorrisJokeApi'
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Нажмите кнопку, чтобы загрузить шутку'
+  @State message: string = ""
   @State isLoading: boolean = false
+  @State hasLoaded: boolean = false
 
   build() {
     Column() {
       if (this.isLoading) {
-        // ProgressBar().indeterminate(true).size('large').padding(20)
+        LoadingProgress()
+          .color(Color.Blue)
+          .width("40%")
+          .height("60%")
       } else {
         Text(this.message)
+          .height("60%")
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
           .padding(20)
           .textAlign(TextAlign.Center)
-          .flexGrow(1)
       }
 
       Button($r("app.string.updateJoke_button_label"))
@@ -28,6 +32,12 @@ struct Index {
     .width('100%')
     .height('100%')
     .backgroundColor('#F0F0F0')
+    .onAppear(() => {
+      if (!this.hasLoaded) {
+        this.loadJoke()
+        this.hasLoaded = true
+      }
+    })
   }
 
   loadJoke() {
