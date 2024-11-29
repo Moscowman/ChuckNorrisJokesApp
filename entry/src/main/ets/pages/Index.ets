@@ -51,7 +51,7 @@ struct Index {
       .then(joke => {
         this.message = joke.value
       })
-      .catch(error => {
+      .catch((error: Error) => {
         this.message = $r("app.string.can_not_load_joke_message") + ": " + error.message
       })
       .finally(() => {
